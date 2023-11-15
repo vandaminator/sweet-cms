@@ -1,32 +1,42 @@
-import {defineType, defineField, defineArrayMember} from 'sanity'
+import {defineType, defineField} from 'sanity'
 
-export const Icecream = defineType({
-  title: "Ice-cream",
-  name: "Ice-cream",
-  type: "document",
+export const Product = defineType({
+  title: 'Product',
+  name: 'product',
+  type: 'document',
   fields: [
     defineField({
-      title: "Name",
-      name: "name",
-      type: "string",
+      title: 'Name',
+      name: 'name',
+      type: 'string',
+      validation: Rule => Rule.required(),
     }),
     defineField({
-      title: "Price",
-      name: "price",
-      type: "number",
+      title: 'Price',
+      name: 'price',
+      type: 'number',
+      validation: Rule => Rule.required(),
     }),
     defineField({
-      title: "Images",
-      name: "images",
-      type: "array",
-      of: [{type: "image"}]
+      title: 'Images',
+      name: 'images',
+      type: 'array',
+      of: [{type: 'image'}],
+      validation: Rule => Rule.required(),
     }),
     defineField({
-      title: "Tags",
-      name: "tags",
-      type: "array",
-      of: [{type: "reference", to: [{type: "Tag"}]}]
+      title: 'Category',
+      name: 'category',
+      type: 'reference',
+      to: [{type: 'Category'}],
+      validation: Rule => Rule.required(),
     }),
-  ]
+    defineField({
+      title: 'Tags',
+      name: 'tags',
+      type: 'array',
+      of: [{type: 'reference', to: [{type: 'Tag'}]}],
+      validation: Rule => Rule.required(),
+    }),
+  ],
 })
-
